@@ -1,0 +1,11 @@
+<Solution>
+  <Folder Name="/Solution Items/">
+    <File Path=".gitignore" />
+    <File Path="Directory.Build.props" />
+    <File Path="Directory.Packages.props" />
+  </Folder>
+  <Folder Name="/src/">
+    <Project Path="src/VerticalSlice.Api/VerticalSlice.Api.csproj" Id="b59db0e4-0bf4-4da5-b676-4db4203a6527" />
+  </Folder>
+  <Folder Name="/tests/" />
+</Solution>
