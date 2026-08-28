@@ -1,0 +1,14 @@
+<Solution>
+  <Folder Name="/Solution Items/">
+    <File Path=".gitignore" />
+    <File Path="Directory.Build.props" />
+    <File Path="Directory.Packages.props" />
+  </Folder>
+  <Folder Name="/src/">
+    <Project Path="src/CleanArchitecture.Api/CleanArchitecture.Api.csproj" Id="c7bd3d90-e9c3-41ea-9996-c90dfe052187" />
+    <Project Path="src/CleanArchitecture.Application/CleanArchitecture.Application.csproj" Id="ea06edb5-08b1-4bf7-a235-d26e75d80ae2" />
+    <Project Path="src/CleanArchitecture.Domain/CleanArchitecture.Domain.csproj" Id="d2c49ee4-d299-41c1-8c12-5fad2213e314" />
+    <Project Path="src/CleanArchitecture.Infrastructure/CleanArchitecture.Infrastructure.csproj" Id="ecefc5b9-bc72-48ee-8de0-428c7f074ec4" />
+  </Folder>
+  <Folder Name="/tests/" />
+</Solution>
