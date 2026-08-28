@@ -1,4 +1,4 @@
-﻿namespace VerticalSlice.Api.Features.TodoLists.CreateTodoList;
+namespace VerticalSlice.Api.Features.TodoLists.CreateTodoList;
 
 public class CreateTodoListValidator : AbstractValidator<CreateTodoListCommand>
 {

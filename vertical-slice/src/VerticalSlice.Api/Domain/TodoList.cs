@@ -1,4 +1,4 @@
-﻿namespace VerticalSlice.Api.Domain;
+namespace VerticalSlice.Api.Domain;
 
 public class TodoList
 {

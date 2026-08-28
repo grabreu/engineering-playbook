@@ -1,4 +1,4 @@
-﻿namespace VerticalSlice.Api.Features.TodoItems.CreateTodoItem;
+namespace VerticalSlice.Api.Features.TodoItems.CreateTodoItem;
 
 public class CreateTodoItemValidator : AbstractValidator<CreateTodoItemCommand>
 {
