@@ -1,10 +1,12 @@
+using VerticalSlice.Api.Common.Endpoints;
+
 namespace VerticalSlice.Api.Features.TodoLists.GetTodoLists;
 
-public static class GetTodoListsEndpoint
+public class GetTodoListsEndpoint : IEndpoint
 {
-    public static IEndpointRouteBuilder MapGetTodoListsEndpoint(this IEndpointRouteBuilder endpoints)
+    public static void Map(IEndpointRouteBuilder app)
     {
-        endpoints.MapGet("/todo-lists", async (ISender sender, CancellationToken cancellationToken) =>
+        app.MapGet("/todo-lists", async (ISender sender, CancellationToken cancellationToken) =>
         {
             var query = new GetTodoListsQuery();
             var todoLists = await sender.Send(query, cancellationToken);
@@ -13,7 +15,5 @@ public static class GetTodoListsEndpoint
         .WithTags("TodoLists")
         .WithName("GetTodoLists")
         .Produces<IReadOnlyList<TodoListDto>>(StatusCodes.Status200OK);
-
-        return endpoints;
     }
 }

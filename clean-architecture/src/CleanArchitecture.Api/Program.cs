@@ -1,6 +1,5 @@
 using CleanArchitecture.Api;
-using CleanArchitecture.Api.Endpoints.TodoItems;
-using CleanArchitecture.Api.Endpoints.TodoLists;
+using CleanArchitecture.Api.Endpoints;
 using CleanArchitecture.Application;
 using CleanArchitecture.Infrastructure;
 using CleanArchitecture.Infrastructure.Data;
@@ -33,12 +32,7 @@ if (app.Environment.IsDevelopment())
     app.Map("/", () => Results.Redirect("/scalar"));
 }
 
-app.MapCreateTodoListEndpoint();
-app.MapGetTodoListsEndpoint();
-
-app.MapCreateTodoItemEndpoint();
-app.MapGetTodoItemsEndpoint();
-app.MapCompleteTodoItemEndpoint();
+app.MapEndpoints();
 
 if (app.Environment.IsDevelopment())
 {

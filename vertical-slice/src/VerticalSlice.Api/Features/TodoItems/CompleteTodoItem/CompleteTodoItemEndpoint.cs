@@ -1,10 +1,12 @@
+using VerticalSlice.Api.Common.Endpoints;
+
 namespace VerticalSlice.Api.Features.TodoItems.CompleteTodoItem;
 
-public static class CompleteTodoItemEndpoint
+public class CompleteTodoItemEndpoint : IEndpoint
 {
-    public static IEndpointRouteBuilder MapCompleteTodoItemEndpoint(this IEndpointRouteBuilder endpoints)
+    public static void Map(IEndpointRouteBuilder app)
     {
-        endpoints.MapPatch("/todo-items/{id}/complete", async (Guid id, ISender sender, CancellationToken cancellationToken) =>
+        app.MapPatch("/todo-items/{id}/complete", async (Guid id, ISender sender, CancellationToken cancellationToken) =>
         {
             var command = new CompleteTodoItemCommand(id);
             var result = await sender.Send(command, cancellationToken);
@@ -14,7 +16,5 @@ public static class CompleteTodoItemEndpoint
         .WithName("CompleteTodoItem")
         .Produces(StatusCodes.Status204NoContent)
         .ProducesValidationProblem();
-
-        return endpoints;
     }
 }

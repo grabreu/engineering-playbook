@@ -1,10 +1,12 @@
+using VerticalSlice.Api.Common.Endpoints;
+
 namespace VerticalSlice.Api.Features.TodoItems.CreateTodoItem;
 
-public static class CreateTodoItemEndpoint
+public class CreateTodoItemEndpoint : IEndpoint
 {
-    public static IEndpointRouteBuilder MapCreateTodoItemEndpoint(this IEndpointRouteBuilder endpoints)
+    public static void Map(IEndpointRouteBuilder app)
     {
-        endpoints.MapPost("/todo-items", async (CreateTodoItemRequest request, ISender sender, CancellationToken cancellationToken) =>
+        app.MapPost("/todo-items", async (CreateTodoItemRequest request, ISender sender, CancellationToken cancellationToken) =>
         {
             var command = new CreateTodoItemCommand(request.TodoListId, request.Title);
             var result = await sender.Send(command, cancellationToken);
@@ -14,8 +16,6 @@ public static class CreateTodoItemEndpoint
         .WithName("CreateTodoItem")
         .Produces<TodoItemDto>(StatusCodes.Status201Created)
         .ProducesValidationProblem();
-
-        return endpoints;
     }
 
     public record CreateTodoItemRequest(Guid TodoListId, string Title);

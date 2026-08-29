@@ -3,11 +3,11 @@ using CleanArchitecture.Application.TodoLists.CreateTodoList;
 
 namespace CleanArchitecture.Api.Endpoints.TodoLists;
 
-public static class CreateTodoListEndpoint
+public class CreateTodoListEndpoint : IEndpoint
 {
-    public static IEndpointRouteBuilder MapCreateTodoListEndpoint(this IEndpointRouteBuilder endpoints)
+    public static void Map(IEndpointRouteBuilder app)
     {
-        endpoints.MapPost("/todo-lists", async (CreateTodoListRequest request, ISender sender, CancellationToken cancellationToken) =>
+        app.MapPost("/todo-lists", async (CreateTodoListRequest request, ISender sender, CancellationToken cancellationToken) =>
         {
             var command = new CreateTodoListCommand(request.Name);
             var result = await sender.Send(command, cancellationToken);
@@ -17,8 +17,6 @@ public static class CreateTodoListEndpoint
         .WithName("CreateTodoList")
         .Produces<TodoListDto>(StatusCodes.Status201Created)
         .ProducesValidationProblem();
-
-        return endpoints;
     }
 
     public record CreateTodoListRequest(string Name);

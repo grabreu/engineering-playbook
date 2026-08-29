@@ -1,12 +1,8 @@
 using VerticalSlice.Api.Common.Behaviors;
+using VerticalSlice.Api.Common.Endpoints;
 using VerticalSlice.Api.Common.ExceptionHandling;
 using VerticalSlice.Api.Data;
 using VerticalSlice.Api.Data.Interceptors;
-using VerticalSlice.Api.Features.TodoItems.CompleteTodoItem;
-using VerticalSlice.Api.Features.TodoItems.CreateTodoItem;
-using VerticalSlice.Api.Features.TodoItems.GetTodoItems;
-using VerticalSlice.Api.Features.TodoLists.CreateTodoList;
-using VerticalSlice.Api.Features.TodoLists.GetTodoLists;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -66,12 +62,7 @@ if (app.Environment.IsDevelopment())
     app.Map("/", () => Results.Redirect("/scalar"));
 }
 
-app.MapCreateTodoListEndpoint();
-app.MapGetTodoListsEndpoint();
-
-app.MapCreateTodoItemEndpoint();
-app.MapGetTodoItemsEndpoint();
-app.MapCompleteTodoItemEndpoint();
+app.MapEndpoints();
 
 if (app.Environment.IsDevelopment())
 {

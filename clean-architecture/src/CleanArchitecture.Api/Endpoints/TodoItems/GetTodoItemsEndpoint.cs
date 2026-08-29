@@ -3,11 +3,11 @@ using CleanArchitecture.Application.TodoItems.GetTodoItems;
 
 namespace CleanArchitecture.Api.Endpoints.TodoItems;
 
-public static class GetTodoItemsEndpoint
+public class GetTodoItemsEndpoint : IEndpoint
 {
-    public static IEndpointRouteBuilder MapGetTodoItemsEndpoint(this IEndpointRouteBuilder endpoints)
+    public static void Map(IEndpointRouteBuilder app)
     {
-        endpoints.MapGet("/todo-items", async (Guid? todoListId, ISender sender, CancellationToken cancellationToken) =>
+        app.MapGet("/todo-items", async (Guid? todoListId, ISender sender, CancellationToken cancellationToken) =>
         {
             var query = new GetTodoItemsQuery(todoListId);
             var todoItems = await sender.Send(query, cancellationToken);
@@ -16,7 +16,5 @@ public static class GetTodoItemsEndpoint
         .WithTags("TodoItems")
         .WithName("GetTodoItems")
         .Produces<IReadOnlyList<TodoItemDto>>(StatusCodes.Status200OK);
-
-        return endpoints;
     }
 }
