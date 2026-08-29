@@ -1,4 +1,5 @@
 using VerticalSlice.Api.Common.Endpoints;
+using VerticalSlice.Api.Common.Result;
 
 namespace VerticalSlice.Api.Features.TodoItems.CreateTodoItem;
 
@@ -10,7 +11,8 @@ public class CreateTodoItemEndpoint : IEndpoint
         {
             var command = new CreateTodoItemCommand(request.TodoListId, request.Title);
             var result = await sender.Send(command, cancellationToken);
-            return Results.Created($"/todo-items/{result.Id}", result);
+            return result.ToCreated(value => $"/todo-items/{value.Id}");
+
         })
         .WithTags("TodoItems")
         .WithName("CreateTodoItem")

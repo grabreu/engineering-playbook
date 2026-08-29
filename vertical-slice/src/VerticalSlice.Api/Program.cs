@@ -15,7 +15,7 @@ builder.Host.UseSerilog((context, services, configuration) =>
 
 builder.Services.AddOpenApi();
 
-builder.Services.AddExceptionHandler<ValidationExceptionHandler>();
+builder.Services.AddExceptionHandler<DomainExceptionHandler>();
 builder.Services.AddExceptionHandler<GlobalExceptionHandler>();
 builder.Services.AddProblemDetails();
 

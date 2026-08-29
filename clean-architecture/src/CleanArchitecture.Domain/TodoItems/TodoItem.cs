@@ -1,4 +1,5 @@
 using CleanArchitecture.Domain.Common.Events;
+using CleanArchitecture.Domain.Common.Exceptions;
 using CleanArchitecture.Domain.TodoItems.Events;
 
 namespace CleanArchitecture.Domain.TodoItems;
@@ -25,7 +26,7 @@ public class TodoItem : HasDomainEventsBase
     {
         if (IsCompleted)
         {
-            return;
+            throw new DomainException($"Todo item '{Id}' is already completed.");
         }
 
         IsCompleted = true;

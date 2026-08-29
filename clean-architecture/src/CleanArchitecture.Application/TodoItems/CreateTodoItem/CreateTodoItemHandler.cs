@@ -1,15 +1,16 @@
 using CleanArchitecture.Application.Common.Interfaces;
+using CleanArchitecture.Application.Common.Result;
 using CleanArchitecture.Domain.TodoItems;
 
 namespace CleanArchitecture.Application.TodoItems.CreateTodoItem;
 
-public class CreateTodoItemHandler(IApplicationDbContext dbContext) : ICommandHandler<CreateTodoItemCommand, TodoItemDto>
+public class CreateTodoItemHandler(IApplicationDbContext dbContext) : ICommandHandler<CreateTodoItemCommand, Result<TodoItemDto>>
 {
-    public async ValueTask<TodoItemDto> Handle(CreateTodoItemCommand command, CancellationToken cancellationToken)
+    public async ValueTask<Result<TodoItemDto>> Handle(CreateTodoItemCommand command, CancellationToken cancellationToken)
     {
         if (!await dbContext.TodoLists.AnyAsync(t => t.Id == command.TodoListId, cancellationToken))
         {
-            throw new InvalidOperationException($"Todo list '{command.TodoListId}' was not found.");
+            return Error.NotFound("TodoLists.NotFound", $"Todo list '{command.TodoListId}' was not found.");
         }
 
         var todoItem = new TodoItem(command.TodoListId, command.Title);
@@ -18,6 +19,6 @@ public class CreateTodoItemHandler(IApplicationDbContext dbContext) : ICommandHa
 
         await dbContext.SaveChangesAsync(cancellationToken);
 
-        return new(todoItem.Id, todoItem.TodoListId, todoItem.Title, todoItem.IsCompleted);
+        return new TodoItemDto(todoItem.Id, todoItem.TodoListId, todoItem.Title, todoItem.IsCompleted);
     }
 }

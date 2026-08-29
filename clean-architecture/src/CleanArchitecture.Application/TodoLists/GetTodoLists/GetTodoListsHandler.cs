@@ -1,10 +1,11 @@
 using CleanArchitecture.Application.Common.Interfaces;
+using CleanArchitecture.Application.Common.Result;
 
 namespace CleanArchitecture.Application.TodoLists.GetTodoLists;
 
-public class GetTodoListsHandler(IApplicationDbContext dbContext) : IQueryHandler<GetTodoListsQuery, IReadOnlyList<TodoListDto>>
+public class GetTodoListsHandler(IApplicationDbContext dbContext) : IQueryHandler<GetTodoListsQuery, Result<IReadOnlyList<TodoListDto>>>
 {
-    public async ValueTask<IReadOnlyList<TodoListDto>> Handle(GetTodoListsQuery query, CancellationToken cancellationToken)
+    public async ValueTask<Result<IReadOnlyList<TodoListDto>>> Handle(GetTodoListsQuery query, CancellationToken cancellationToken)
     {
         var queryable = dbContext.TodoLists.AsNoTracking();
 

@@ -1,3 +1,5 @@
+using VerticalSlice.Api.Common.Result;
+
 namespace VerticalSlice.Api.Features.TodoLists.GetTodoLists;
 
-public record GetTodoListsQuery : IQuery<IReadOnlyList<TodoListDto>>;
+public record GetTodoListsQuery : IQuery<Result<IReadOnlyList<TodoListDto>>>;

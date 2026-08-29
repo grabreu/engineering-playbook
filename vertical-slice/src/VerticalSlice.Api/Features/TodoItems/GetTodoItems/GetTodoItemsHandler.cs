@@ -1,10 +1,11 @@
+using VerticalSlice.Api.Common.Result;
 using VerticalSlice.Api.Data;
 
 namespace VerticalSlice.Api.Features.TodoItems.GetTodoItems;
 
-public class GetTodoItemsHandler(ApplicationDbContext dbContext) : IQueryHandler<GetTodoItemsQuery, IReadOnlyList<TodoItemDto>>
+public class GetTodoItemsHandler(ApplicationDbContext dbContext) : IQueryHandler<GetTodoItemsQuery, Result<IReadOnlyList<TodoItemDto>>>
 {
-    public async ValueTask<IReadOnlyList<TodoItemDto>> Handle(GetTodoItemsQuery query, CancellationToken cancellationToken)
+    public async ValueTask<Result<IReadOnlyList<TodoItemDto>>> Handle(GetTodoItemsQuery query, CancellationToken cancellationToken)
     {
         var queryable = dbContext.TodoItems.AsNoTracking();
 

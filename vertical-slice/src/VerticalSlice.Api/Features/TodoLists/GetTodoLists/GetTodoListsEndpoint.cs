@@ -1,4 +1,5 @@
 using VerticalSlice.Api.Common.Endpoints;
+using VerticalSlice.Api.Common.Result;
 
 namespace VerticalSlice.Api.Features.TodoLists.GetTodoLists;
 
@@ -9,8 +10,8 @@ public class GetTodoListsEndpoint : IEndpoint
         app.MapGet("/todo-lists", async (ISender sender, CancellationToken cancellationToken) =>
         {
             var query = new GetTodoListsQuery();
-            var todoLists = await sender.Send(query, cancellationToken);
-            return Results.Ok(todoLists);
+            var result = await sender.Send(query, cancellationToken);
+            return result.ToOk();
         })
         .WithTags("TodoLists")
         .WithName("GetTodoLists")

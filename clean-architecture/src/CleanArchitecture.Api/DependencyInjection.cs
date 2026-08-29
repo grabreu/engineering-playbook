@@ -8,7 +8,7 @@ public static class DependencyInjection
     {
         services.AddOpenApi();
 
-        services.AddExceptionHandler<ValidationExceptionHandler>();
+        services.AddExceptionHandler<DomainExceptionHandler>();
         services.AddExceptionHandler<GlobalExceptionHandler>();
         services.AddProblemDetails();
 

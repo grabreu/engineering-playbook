@@ -1,4 +1,5 @@
 using VerticalSlice.Api.Common.Events;
+using VerticalSlice.Api.Common.Exceptions;
 using VerticalSlice.Api.Domain.Events;
 
 namespace VerticalSlice.Api.Domain;
@@ -25,7 +26,7 @@ public class TodoItem : HasDomainEventsBase
     {
         if (IsCompleted)
         {
-            return;
+            throw new DomainException($"Todo item '{Id}' is already completed.");
         }
 
         IsCompleted = true;

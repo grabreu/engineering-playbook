@@ -10,7 +10,7 @@ public class CompleteTodoItemEndpoint : IEndpoint
         {
             var command = new CompleteTodoItemCommand(id);
             var result = await sender.Send(command, cancellationToken);
-            return Results.NoContent();
+            return result.ToNoContent();
         })
         .WithTags("TodoItems")
         .WithName("CompleteTodoItem")

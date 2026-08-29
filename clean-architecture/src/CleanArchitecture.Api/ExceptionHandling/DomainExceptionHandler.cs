@@ -1,21 +1,22 @@
+using CleanArchitecture.Domain.Common.Exceptions;
+
 namespace CleanArchitecture.Api.ExceptionHandling;
 
-public class ValidationExceptionHandler(IProblemDetailsService problemDetailsService) : IExceptionHandler
+public class DomainExceptionHandler(ILogger<DomainExceptionHandler> logger, IProblemDetailsService problemDetailsService) : IExceptionHandler
 {
     public async ValueTask<bool> TryHandleAsync(HttpContext httpContext, Exception exception, CancellationToken cancellationToken)
     {
-        if (exception is not ValidationException validationException)
+        if (exception is not DomainException domainException)
         {
             return false;
         }
 
-        var errors = validationException.Errors
-            .GroupBy(e => e.PropertyName, e => e.ErrorMessage)
-            .ToDictionary(errorGroup => errorGroup.Key, failureGroup => failureGroup.ToArray());
+        logger.LogWarning(exception, "A domain exception occurred: {Message}", exception.Message);
 
-        var problemDetails = new ValidationProblemDetails(errors)
+        var problemDetails = new ProblemDetails
         {
-            Status = StatusCodes.Status400BadRequest
+            Status = StatusCodes.Status400BadRequest,
+            Detail = domainException.Message
         };
 
         httpContext.Response.StatusCode = problemDetails.Status.Value;

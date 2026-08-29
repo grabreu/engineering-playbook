@@ -1,3 +1,5 @@
+using VerticalSlice.Api.Common.Result;
+
 namespace VerticalSlice.Api.Common.Behaviors;
 
 public class ValidationBehavior<TMessage, TResponse>(IEnumerable<IValidator<TMessage>> validators) : IPipelineBehavior<TMessage, TResponse> where TMessage : IMessage
@@ -21,7 +23,8 @@ public class ValidationBehavior<TMessage, TResponse>(IEnumerable<IValidator<TMes
 
         if (failures.Count > 0)
         {
-            throw new ValidationException(failures);
+            var errors = failures.ConvertAll(failure => Error.Validation(failure.PropertyName, failure.ErrorMessage));
+            return (dynamic)errors;
         }
 
         return await next(message, cancellationToken);

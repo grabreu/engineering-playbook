@@ -1,3 +1,5 @@
+using CleanArchitecture.Application.Common.Result;
+
 namespace CleanArchitecture.Application.TodoItems.GetTodoItems;
 
-public record GetTodoItemsQuery(Guid? TodoListId) : IQuery<IReadOnlyList<TodoItemDto>>;
+public record GetTodoItemsQuery(Guid? TodoListId) : IQuery<Result<IReadOnlyList<TodoItemDto>>>;
