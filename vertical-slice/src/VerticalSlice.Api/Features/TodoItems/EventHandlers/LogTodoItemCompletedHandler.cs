@@ -1,4 +1,4 @@
-using VerticalSlice.Api.Domain.Events;
+using VerticalSlice.Api.Domain.TodoItems.Events;
 
 namespace VerticalSlice.Api.Features.TodoItems.EventHandlers;
 

@@ -1,4 +1,5 @@
-using VerticalSlice.Api.Domain;
+using VerticalSlice.Api.Domain.TodoItems;
+using VerticalSlice.Api.Domain.TodoLists;
 
 namespace VerticalSlice.Api.Data.Configurations;
 

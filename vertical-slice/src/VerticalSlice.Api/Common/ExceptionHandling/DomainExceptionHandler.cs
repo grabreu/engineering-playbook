@@ -1,4 +1,4 @@
-using VerticalSlice.Api.Common.Exceptions;
+using VerticalSlice.Api.Domain.SeedWork;
 
 namespace VerticalSlice.Api.Common.ExceptionHandling;
 

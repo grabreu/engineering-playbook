@@ -1,6 +1,5 @@
-using VerticalSlice.Api.Common.Result;
 using VerticalSlice.Api.Data;
-using VerticalSlice.Api.Domain;
+using VerticalSlice.Api.Domain.TodoItems;
 
 namespace VerticalSlice.Api.Features.TodoItems.CreateTodoItem;
 

@@ -1,5 +1,3 @@
-using CleanArchitecture.Application.Common.Result;
-
 namespace CleanArchitecture.Application.Common.Behaviors;
 
 public class ValidationBehavior<TMessage, TResponse>(IEnumerable<IValidator<TMessage>> validators) : IPipelineBehavior<TMessage, TResponse> where TMessage : IMessage

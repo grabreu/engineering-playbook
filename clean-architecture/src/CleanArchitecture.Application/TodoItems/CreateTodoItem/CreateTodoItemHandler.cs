@@ -1,5 +1,4 @@
 using CleanArchitecture.Application.Common.Interfaces;
-using CleanArchitecture.Application.Common.Result;
 using CleanArchitecture.Domain.TodoItems;
 
 namespace CleanArchitecture.Application.TodoItems.CreateTodoItem;

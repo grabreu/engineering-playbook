@@ -1,4 +1,4 @@
-using VerticalSlice.Api.Common.Events;
+using VerticalSlice.Api.Domain.SeedWork;
 
 namespace VerticalSlice.Api.Data.Interceptors;
 

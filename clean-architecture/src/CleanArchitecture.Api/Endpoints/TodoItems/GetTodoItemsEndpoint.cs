@@ -3,9 +3,9 @@ using CleanArchitecture.Application.TodoItems.GetTodoItems;
 
 namespace CleanArchitecture.Api.Endpoints.TodoItems;
 
-public class GetTodoItemsEndpoint : IEndpoint
+public static class GetTodoItemsEndpoint
 {
-    public static void Map(IEndpointRouteBuilder app)
+    public static void MapGetTodoItemsEndpoint(this IEndpointRouteBuilder app)
     {
         app.MapGet("/todo-items", async (Guid? todoListId, ISender sender, CancellationToken cancellationToken) =>
         {

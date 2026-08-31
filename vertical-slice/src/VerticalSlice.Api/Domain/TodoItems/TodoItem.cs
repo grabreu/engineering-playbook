@@ -1,8 +1,7 @@
-using VerticalSlice.Api.Common.Events;
-using VerticalSlice.Api.Common.Exceptions;
-using VerticalSlice.Api.Domain.Events;
+using VerticalSlice.Api.Domain.SeedWork;
+using VerticalSlice.Api.Domain.TodoItems.Events;
 
-namespace VerticalSlice.Api.Domain;
+namespace VerticalSlice.Api.Domain.TodoItems;
 
 public class TodoItem : HasDomainEventsBase
 {

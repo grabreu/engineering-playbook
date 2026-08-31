@@ -1,4 +1,4 @@
-namespace VerticalSlice.Api.Common.Events;
+namespace VerticalSlice.Api.Domain.SeedWork;
 
 public abstract class HasDomainEventsBase : IHasDomainEvents
 {

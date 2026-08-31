@@ -1,4 +1,4 @@
-using CleanArchitecture.Domain.Common.Events;
+using CleanArchitecture.Domain.SeedWork;
 
 namespace CleanArchitecture.Infrastructure.Data.Interceptors;
 

@@ -1,4 +1,4 @@
-namespace CleanArchitecture.Domain.Common.Events;
+namespace CleanArchitecture.Domain.SeedWork;
 
 public abstract class HasDomainEventsBase : IHasDomainEvents
 {

@@ -1,4 +1,4 @@
-namespace VerticalSlice.Api.Common.Events;
+namespace CleanArchitecture.Domain.SeedWork;
 
 public interface IHasDomainEvents
 {

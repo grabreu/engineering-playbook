@@ -1,4 +1,4 @@
-using CleanArchitecture.Domain.Common.Exceptions;
+using CleanArchitecture.Domain.SeedWork;
 
 namespace CleanArchitecture.Api.ExceptionHandling;
 

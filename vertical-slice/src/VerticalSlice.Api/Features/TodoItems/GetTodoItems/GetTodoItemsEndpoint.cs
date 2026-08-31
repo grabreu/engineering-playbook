@@ -1,11 +1,8 @@
-using VerticalSlice.Api.Common.Endpoints;
-using VerticalSlice.Api.Common.Result;
-
 namespace VerticalSlice.Api.Features.TodoItems.GetTodoItems;
 
-public class GetTodoItemsEndpoint : IEndpoint
+public static class GetTodoItemsEndpoint
 {
-    public static void Map(IEndpointRouteBuilder app)
+    public static void MapGetTodoItemsEndpoint(this IEndpointRouteBuilder app)
     {
         app.MapGet("/todo-items", async (Guid? todoListId, ISender sender, CancellationToken cancellationToken) =>
         {

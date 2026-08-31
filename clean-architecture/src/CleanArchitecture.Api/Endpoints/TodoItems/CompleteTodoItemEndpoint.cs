@@ -2,9 +2,9 @@ using CleanArchitecture.Application.TodoItems.CompleteTodoItem;
 
 namespace CleanArchitecture.Api.Endpoints.TodoItems;
 
-public class CompleteTodoItemEndpoint : IEndpoint
+public static class CompleteTodoItemEndpoint
 {
-    public static void Map(IEndpointRouteBuilder app)
+    public static void MapCompleteTodoItemEndpoint(this IEndpointRouteBuilder app)
     {
         app.MapPatch("/todo-items/{id}/complete", async (Guid id, ISender sender, CancellationToken cancellationToken) =>
         {

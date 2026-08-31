@@ -1,11 +1,8 @@
-using VerticalSlice.Api.Common.Endpoints;
-using VerticalSlice.Api.Common.Result;
-
 namespace VerticalSlice.Api.Features.TodoLists.CreateTodoList;
 
-public class CreateTodoListEndpoint : IEndpoint
+public static class CreateTodoListEndpoint
 {
-    public static void Map(IEndpointRouteBuilder app)
+    public static void MapCreateTodoListEndpoint(this IEndpointRouteBuilder app)
     {
         app.MapPost("/todo-lists", async (CreateTodoListRequest request, ISender sender, CancellationToken cancellationToken) =>
         {

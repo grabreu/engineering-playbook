@@ -1,5 +1,4 @@
-using CleanArchitecture.Domain.Common.Events;
-using CleanArchitecture.Domain.Common.Exceptions;
+using CleanArchitecture.Domain.SeedWork;
 using CleanArchitecture.Domain.TodoItems.Events;
 
 namespace CleanArchitecture.Domain.TodoItems;

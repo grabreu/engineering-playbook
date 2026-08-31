@@ -1,5 +1,3 @@
-using VerticalSlice.Api.Common.Result;
-
 namespace VerticalSlice.Api.Common.Behaviors;
 
 public class ValidationBehavior<TMessage, TResponse>(IEnumerable<IValidator<TMessage>> validators) : IPipelineBehavior<TMessage, TResponse> where TMessage : IMessage

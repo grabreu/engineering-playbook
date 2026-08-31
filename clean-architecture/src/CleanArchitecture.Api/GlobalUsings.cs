@@ -1,4 +1,5 @@
 global using System.Reflection;
+global using Desfecho.AspNetCore;
 global using FluentValidation;
 global using Mediator;
 global using Microsoft.AspNetCore.Diagnostics;

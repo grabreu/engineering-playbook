@@ -1,5 +1,4 @@
 using CleanArchitecture.Application.Common.Interfaces;
-using CleanArchitecture.Application.Common.Result;
 
 namespace CleanArchitecture.Application.TodoItems.CompleteTodoItem;
 

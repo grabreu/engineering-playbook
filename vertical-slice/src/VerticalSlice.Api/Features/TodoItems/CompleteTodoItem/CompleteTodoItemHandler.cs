@@ -1,4 +1,3 @@
-using VerticalSlice.Api.Common.Result;
 using VerticalSlice.Api.Data;
 
 namespace VerticalSlice.Api.Features.TodoItems.CompleteTodoItem;
