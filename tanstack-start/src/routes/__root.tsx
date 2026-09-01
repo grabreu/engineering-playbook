@@ -4,10 +4,12 @@ import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import {
   createRootRouteWithContext,
   HeadContent,
+  Link,
   Scripts,
 } from "@tanstack/react-router";
 import { TanStackRouterDevtoolsPanel } from "@tanstack/react-router-devtools";
 import type { ReactNode } from "react";
+import { Toaster } from "~/components/toast";
 import appCss from "~/styles/app.css?url";
 import { seo } from "~/utils/seo";
 
@@ -22,7 +24,20 @@ const RootDocument = ({ children }: RootDocumentProps) => {
         <HeadContent />
       </head>
       <body>
+        <div className="p-2 flex gap-2 text-lg">
+          <Link
+            to="/"
+            activeProps={{
+              className: "font-bold",
+            }}
+            activeOptions={{ exact: true }}
+          >
+            Home
+          </Link>
+        </div>
+        <hr />
         {children}
+        <Toaster />
         <TanStackDevtools
           plugins={[
             {

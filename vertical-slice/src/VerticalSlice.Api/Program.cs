@@ -56,7 +56,6 @@ var app = builder.Build();
 
 app.UseSerilogRequestLogging();
 app.UseExceptionHandler();
-app.UseHttpsRedirection();
 app.UseCors();
 
 if (app.Environment.IsDevelopment())
