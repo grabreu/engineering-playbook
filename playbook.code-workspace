@@ -2,6 +2,7 @@
   "folders": [
     { "name": "root", "path": "." },
     { "name": "clean-architecture", "path": "clean-architecture" },
-    { "name": "vertical-slice", "path": "vertical-slice" }
+    { "name": "vertical-slice", "path": "vertical-slice" },
+    { "name": "tanstack-start", "path": "tanstack-start" }
   ]
 }
