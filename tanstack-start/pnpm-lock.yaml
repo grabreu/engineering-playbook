@@ -23,15 +23,15 @@ importers:
       '@tanstack/react-start':
         specifier: ^1.168.49
         version: 1.168.49(react-dom@19.2.8(react@19.2.8))(react@19.2.8)(rolldown@1.2.6)(vite@8.2.2(@types/node@26.4.0)(jiti@2.7.0))
+      ky:
+        specifier: ^2.1.0
+        version: 2.1.0
       react:
         specifier: ^19.2.8
         version: 19.2.8
       react-dom:
         specifier: ^19.2.8
         version: 19.2.8(react@19.2.8)
-      redaxios:
-        specifier: ^0.5.1
-        version: 0.5.1
       zod:
         specifier: ^4.5.4
         version: 4.5.4
@@ -1309,6 +1309,10 @@ packages:
     engines: {node: '>=6'}
     hasBin: true
 
+  ky@2.1.0:
+    resolution: {integrity: sha512-nIKwelw+7qVqKOlX4Eht6GXfEXlDHcdIjyLWV3s119kYt5s+70ayTnYS+0fRNmtgGRRAfqdeWQbh8YizqkS0ng==}
+    engines: {node: '>=22'}
+
   launch-editor@2.14.1:
     resolution: {integrity: sha512-QWBrQsMpH7gPr965dsKD/3cKWiNoTjpATQf++Xq63N6sKRGMwlVXz41O1IZTMfZQgBctD/K5Zt06+/I6pP6+HA==}
 
@@ -1521,9 +1525,6 @@ packages:
   readdirp@5.1.1:
     resolution: {integrity: sha512-Kko+Y5XQ6fM+Ce3dq3m9YGxnacYZYl9cA1wZjaF3Vbry2L3i1qVg8+CAgNPsXRArPMUMCaOR7oa9Nqntc43JKA==}
     engines: {node: '>= 20.19.0'}
-
-  redaxios@0.5.1:
-    resolution: {integrity: sha512-FSD2AmfdbkYwl7KDExYQlVvIrFz6Yd83pGfaGjBzM9F6rpq8g652Q4Yq5QD4c+nf4g2AgeElv1y+8ajUPiOYMg==}
 
   reselect@5.3.0:
     resolution: {integrity: sha512-XGoLeRAVzUTcJ1qkxPQhDJyIZ5d6zzZD9nT7AEZOaaU9UbWclhycElmhO+VD5bFeLuzhPBaOV2oXC8uG35ZSpg==}
@@ -2854,6 +2855,8 @@ snapshots:
 
   json5@2.2.3: {}
 
+  ky@2.1.0: {}
+
   launch-editor@2.14.1:
     dependencies:
       picocolors: 1.1.1
@@ -3025,8 +3028,6 @@ snapshots:
   react@19.2.8: {}
 
   readdirp@5.1.1: {}
-
-  redaxios@0.5.1: {}
 
   reselect@5.3.0: {}
 

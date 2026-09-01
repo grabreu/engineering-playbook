@@ -9,8 +9,8 @@ type TodoList = {
 };
 
 const getTodoListsFn = createServerFn({ method: "GET" }).handler(async () => {
-  const response = await api.get<TodoList[]>("/todo-lists");
-  return response.data;
+  const response = await api.get("/todo-lists");
+  return response.json<TodoList[]>();
 });
 
 export const getTodoListsQueryOptions = () => {

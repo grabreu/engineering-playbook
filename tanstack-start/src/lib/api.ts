@@ -1,8 +1,4 @@
-import axios from "redaxios";
-
-export const api = axios.create({
-  baseURL: import.meta.env.VITE_API_URL,
-});
+import ky, { isHTTPError } from "ky";
 
 type ProblemDetails = {
   type?: string;
@@ -12,11 +8,17 @@ type ProblemDetails = {
   traceId?: string;
 };
 
-export function getApiErrorMessage(error: unknown) {
-  const response = error as {
-    data?: ProblemDetails;
-    statusText?: string;
-  };
-
-  return response.data?.detail ?? response.statusText ?? "Unexpected error";
-}
+export const api = ky.create({
+  baseUrl: import.meta.env.VITE_API_URL,
+  hooks: {
+    beforeError: [
+      ({ error }) => {
+        if (isHTTPError(error)) {
+          const problem = error.data as ProblemDetails;
+          return new Error(problem.detail ?? error.message);
+        }
+        return error;
+      },
+    ],
+  },
+});

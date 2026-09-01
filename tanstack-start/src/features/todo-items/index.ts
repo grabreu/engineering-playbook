@@ -6,7 +6,7 @@ import {
 } from "@tanstack/react-query";
 import { createServerFn } from "@tanstack/react-start";
 import z from "zod";
-import { api, getApiErrorMessage } from "~/lib/api";
+import { api } from "~/lib/api";
 import type { MutationConfig, QueryConfig } from "~/lib/query";
 
 type TodoItem = {
@@ -31,14 +31,11 @@ type GetTodoItemsInput = z.infer<typeof GetTodoItemsInputSchema>;
 const getTodoItemsFn = createServerFn({ method: "GET" })
   .validator(GetTodoItemsInputSchema)
   .handler(async ({ data }) => {
-    try {
-      const response = await api.get<TodoItem[]>("/todo-items", {
-        params: data,
-      });
-      return response.data;
-    } catch (error) {
-      throw new Error(getApiErrorMessage(error));
-    }
+    const response = await api.get("todo-items", {
+      searchParams: data,
+    });
+
+    return response.json<TodoItem[]>();
   });
 
 export const getTodoItemsQueryOptions = (input: GetTodoItemsInput = {}) => {
@@ -72,11 +69,7 @@ const CompleteTodoItemInputSchema = z.object({
 const completeTodoItemFn = createServerFn({ method: "POST" })
   .validator(CompleteTodoItemInputSchema)
   .handler(async ({ data }) => {
-    try {
-      await api.patch(`/todo-items/${data.todoItemId}/complete`);
-    } catch (error) {
-      throw new Error(getApiErrorMessage(error));
-    }
+    await api.patch(`/todo-items/${data.todoItemId}/complete`);
   });
 
 type UseCompleteTodoItemOptions = {
