@@ -1,8 +1,8 @@
 import { queryOptions, useSuspenseQuery } from "@tanstack/react-query";
 import { createServerFn } from "@tanstack/react-start";
+import type { TodoList } from "~/features/todo-lists/types/todo-list";
 import { api } from "~/lib/api";
 import type { QueryConfig } from "~/lib/query";
-import type { TodoList } from "../types/todo-list";
 
 const getTodoListsFn = createServerFn({ method: "GET" }).handler(async () => {
   const response = await api.get("/todo-lists");

@@ -2,6 +2,7 @@
   "name": "tanstack-start",
   "private": true,
   "type": "module",
+  "packageManager": "pnpm@11.22.0",
   "scripts": {
     "dev": "vite dev",
     "build": "tsc -b && vite build",
