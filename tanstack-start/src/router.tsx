@@ -1,18 +1,12 @@
-import { MutationCache, QueryClient } from "@tanstack/react-query";
+import { QueryClient } from "@tanstack/react-query";
 import { createRouter as createTanStackRouter } from "@tanstack/react-router";
 import { setupRouterSsrQueryIntegration } from "@tanstack/react-router-ssr-query";
-import { toast } from "./components/toast";
+import { queryConfig } from "./lib/query";
 import { routeTree } from "./routeTree.gen";
 
-export function getRouter() {
+export const getRouter = () => {
   const queryClient = new QueryClient({
-    mutationCache: new MutationCache({
-      onError: (error) => {
-        toast.add({
-          title: error.message,
-        });
-      },
-    }),
+    defaultOptions: queryConfig,
   });
 
   const router = createTanStackRouter({
@@ -29,7 +23,7 @@ export function getRouter() {
   });
 
   return router;
-}
+};
 
 declare module "@tanstack/react-router" {
   interface Register {

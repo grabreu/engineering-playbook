@@ -15,7 +15,7 @@ export const api = ky.create({
       ({ error }) => {
         if (isHTTPError(error)) {
           const problem = error.data as ProblemDetails;
-          return new Error(problem.detail ?? error.message);
+          return new Error(problem.detail ?? problem.title ?? error.message);
         }
         return error;
       },

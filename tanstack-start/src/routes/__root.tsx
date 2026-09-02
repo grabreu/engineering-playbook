@@ -9,8 +9,8 @@ import {
 } from "@tanstack/react-router";
 import { TanStackRouterDevtoolsPanel } from "@tanstack/react-router-devtools";
 import type { ReactNode } from "react";
+import appCss from "~/app.css?url";
 import { Toaster } from "~/components/toast";
-import appCss from "~/styles/app.css?url";
 import { seo } from "~/utils/seo";
 
 type RootDocumentProps = {

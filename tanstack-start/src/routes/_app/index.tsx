@@ -16,6 +16,12 @@ const RouteComponent = () => {
           title: "Completed todo item, refetching todo items...",
         });
       },
+      onError: (error) => {
+        toast.add({
+          title: "Error completing todo item",
+          description: error.message,
+        });
+      }
     },
   });
 
