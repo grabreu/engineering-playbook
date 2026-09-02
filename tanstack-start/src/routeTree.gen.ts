@@ -10,42 +10,32 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as AppIndexRouteImport } from './routes/_app/index'
-import { Route as AppTodoListIdRouteImport } from './routes/_app/$todoListId'
 
 const AppIndexRoute = AppIndexRouteImport.update({
   id: '/_app/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
-const AppTodoListIdRoute = AppTodoListIdRouteImport.update({
-  id: '/_app/$todoListId',
-  path: '/$todoListId',
-  getParentRoute: () => rootRouteImport,
-} as any)
 
 export interface FileRoutesByFullPath {
-  '/$todoListId': typeof AppTodoListIdRoute
   '/': typeof AppIndexRoute
 }
 export interface FileRoutesByTo {
-  '/$todoListId': typeof AppTodoListIdRoute
   '/': typeof AppIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
-  '/_app/$todoListId': typeof AppTodoListIdRoute
   '/_app/': typeof AppIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/$todoListId' | '/'
+  fullPaths: '/'
   fileRoutesByTo: FileRoutesByTo
-  to: '/$todoListId' | '/'
-  id: '__root__' | '/_app/$todoListId' | '/_app/'
+  to: '/'
+  id: '__root__' | '/_app/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
-  AppTodoListIdRoute: typeof AppTodoListIdRoute
   AppIndexRoute: typeof AppIndexRoute
 }
 
@@ -58,18 +48,10 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AppIndexRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/_app/$todoListId': {
-      id: '/_app/$todoListId'
-      path: '/$todoListId'
-      fullPath: '/$todoListId'
-      preLoaderRoute: typeof AppTodoListIdRouteImport
-      parentRoute: typeof rootRouteImport
-    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
-  AppTodoListIdRoute: AppTodoListIdRoute,
   AppIndexRoute: AppIndexRoute,
 }
 export const routeTree = rootRouteImport

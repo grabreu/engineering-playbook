@@ -1,4 +1,5 @@
 import ky, { isHTTPError } from "ky";
+import { env } from "~/config/env";
 
 type ProblemDetails = {
   type?: string;
@@ -9,7 +10,7 @@ type ProblemDetails = {
 };
 
 export const api = ky.create({
-  baseUrl: import.meta.env.VITE_API_URL,
+  baseUrl: env.VITE_API_URL,
   hooks: {
     beforeError: [
       ({ error }) => {
