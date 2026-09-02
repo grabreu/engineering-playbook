@@ -18,7 +18,7 @@ export const api = ky.create({
           const problem = error.data as ProblemDetails;
           return new Error(problem.detail ?? problem.title ?? error.message);
         }
-        return error;
+        return new Error("Something went wrong. Please try again later.");
       },
     ],
   },

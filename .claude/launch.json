@@ -1,0 +1,11 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "tanstack-start",
+      "runtimeExecutable": "pnpm",
+      "runtimeArgs": ["--dir", "tanstack-start", "dev"],
+      "port": 5173
+    }
+  ]
+}
