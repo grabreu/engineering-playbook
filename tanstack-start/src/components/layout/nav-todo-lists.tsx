@@ -1,5 +1,5 @@
 import { Link } from "@tanstack/react-router";
-import { ChevronRightIcon } from "lucide-react";
+import { ChevronDownIcon } from "lucide-react";
 import {
   Collapsible,
   CollapsibleContent,
@@ -29,16 +29,23 @@ export const NavTodoLists = () => {
             <SidebarMenuButton>Lists</SidebarMenuButton>
             <CollapsibleTrigger
               render={<SidebarMenuAction />}
-              className="data-panel-open:rotate-90"
+              className="data-panel-open:rotate-180"
             >
-              <ChevronRightIcon />
+              <ChevronDownIcon />
               <span className="sr-only">Toggle</span>
             </CollapsibleTrigger>
             <CollapsibleContent>
               <SidebarMenuSub>
                 {todoListsQuery.data?.map((todoList) => (
                   <SidebarMenuSubItem key={todoList.id}>
-                    <SidebarMenuSubButton render={<Link to="/" />}>
+                    <SidebarMenuSubButton
+                      render={
+                        <Link
+                          to="/list/$todoListId"
+                          params={{ todoListId: todoList.id }}
+                        />
+                      }
+                    >
                       {todoList.name}
                     </SidebarMenuSubButton>
                   </SidebarMenuSubItem>

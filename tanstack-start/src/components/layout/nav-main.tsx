@@ -1,5 +1,5 @@
 import { Link } from "@tanstack/react-router";
-import { CircleCheckBigIcon, StarIcon } from "lucide-react";
+import { StarIcon } from "lucide-react";
 import {
   SidebarGroup,
   SidebarGroupContent,
@@ -14,13 +14,7 @@ export const NavMain = () => {
       <SidebarGroupContent>
         <SidebarMenu>
           <SidebarMenuItem>
-            <SidebarMenuButton render={<Link to="/" />}>
-              <CircleCheckBigIcon />
-              <span>All Tasks</span>
-            </SidebarMenuButton>
-          </SidebarMenuItem>
-          <SidebarMenuItem>
-            <SidebarMenuButton render={<Link to="/" />}>
+            <SidebarMenuButton render={<Link to="/starred" />}>
               <StarIcon />
               <span>Starred</span>
             </SidebarMenuButton>

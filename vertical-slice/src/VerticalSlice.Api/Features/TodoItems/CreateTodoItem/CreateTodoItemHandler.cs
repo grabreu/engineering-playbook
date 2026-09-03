@@ -18,6 +18,6 @@ public class CreateTodoItemHandler(ApplicationDbContext dbContext) : ICommandHan
 
         await dbContext.SaveChangesAsync(cancellationToken);
 
-        return new TodoItemDto(todoItem.Id, todoItem.TodoListId, todoItem.Title, todoItem.IsCompleted);
+        return new TodoItemDto(todoItem.Id, todoItem.TodoListId, todoItem.Title, todoItem.IsCompleted, todoItem.IsStarred);
     }
 }

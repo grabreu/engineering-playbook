@@ -1,5 +1,5 @@
 import { Link } from "@tanstack/react-router";
-import { CircleCheckIcon, MenuIcon } from "lucide-react";
+import { CircleCheckBigIcon, MenuIcon } from "lucide-react";
 import { ModeToggle } from "~/components/theme/mode-toggle";
 import { Button } from "~/components/ui/button";
 import { useSidebar } from "~/components/ui/sidebar";
@@ -20,7 +20,7 @@ export const SiteHeader = () => {
             <MenuIcon />
           </Button>
           <Link to="/" className="flex items-center gap-2 text-lg font-medium">
-            <CircleCheckIcon />
+            <CircleCheckBigIcon />
             Tasks
           </Link>
         </div>

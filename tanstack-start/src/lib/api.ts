@@ -1,13 +1,6 @@
 import ky, { isHTTPError } from "ky";
 import { env } from "~/config/env";
-
-type ProblemDetails = {
-  type?: string;
-  title?: string;
-  status: number;
-  detail?: string;
-  traceId?: string;
-};
+import type { ProblemDetails } from "~/types/api";
 
 export const api = ky.create({
   baseUrl: env.VITE_API_URL,

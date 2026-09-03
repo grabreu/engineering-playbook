@@ -16,6 +16,9 @@ public class TodoItemConfiguration : IEntityTypeConfiguration<TodoItem>
         builder.Property(x => x.IsCompleted)
             .IsRequired();
 
+        builder.Property(x => x.IsStarred)
+            .IsRequired();
+
         builder.HasOne<TodoList>()
             .WithMany()
             .HasForeignKey(x => x.TodoListId)

@@ -1,3 +1,3 @@
 namespace VerticalSlice.Api.Features.TodoItems.GetTodoItems;
 
-public record GetTodoItemsQuery(Guid? TodoListId) : IQuery<Result<IReadOnlyList<TodoItemDto>>>;
+public record GetTodoItemsQuery(Guid? TodoListId, bool? IsCompleted, bool? IsStarred) : IQuery<Result<IReadOnlyList<TodoItemDto>>>;

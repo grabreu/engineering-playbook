@@ -5,6 +5,7 @@ using VerticalSlice.Api.Data.Interceptors;
 using VerticalSlice.Api.Features.TodoItems.CompleteTodoItem;
 using VerticalSlice.Api.Features.TodoItems.CreateTodoItem;
 using VerticalSlice.Api.Features.TodoItems.GetTodoItems;
+using VerticalSlice.Api.Features.TodoItems.SetTodoItemStarred;
 using VerticalSlice.Api.Features.TodoLists.CreateTodoList;
 using VerticalSlice.Api.Features.TodoLists.GetTodoLists;
 
@@ -68,6 +69,7 @@ if (app.Environment.IsDevelopment())
 app.MapCompleteTodoItemEndpoint();
 app.MapCreateTodoItemEndpoint();
 app.MapGetTodoItemsEndpoint();
+app.MapSetTodoItemStarredEndpoint();
 app.MapCreateTodoListEndpoint();
 app.MapGetTodoListsEndpoint();
 

@@ -4,9 +4,9 @@ public static class GetTodoItemsEndpoint
 {
     public static void MapGetTodoItemsEndpoint(this IEndpointRouteBuilder app)
     {
-        app.MapGet("/todo-items", async (Guid? todoListId, ISender sender, CancellationToken cancellationToken) =>
+        app.MapGet("/todo-items", async (Guid? todoListId, bool? isCompleted, bool? isStarred, ISender sender, CancellationToken cancellationToken) =>
         {
-            var query = new GetTodoItemsQuery(todoListId);
+            var query = new GetTodoItemsQuery(todoListId, isCompleted, isStarred);
             var result = await sender.Send(query, cancellationToken);
             return result.ToOk();
         })
