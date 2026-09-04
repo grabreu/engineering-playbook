@@ -6,7 +6,7 @@ import {
   SidebarMenu,
   SidebarMenuItem,
 } from "~/components/ui/sidebar";
-import { TodoListCreateDialog } from "~/features/todo-lists/todo-lists.components";
+import { TodoListCreateDialog } from "~/features/todo-lists/components/todo-list-create-dialog";
 import { NavMain } from "./nav-main";
 import { NavTodoLists } from "./nav-todo-lists";
 

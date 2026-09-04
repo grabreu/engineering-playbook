@@ -11,8 +11,8 @@ import {
 } from "~/components/ui/empty";
 import { Item, ItemContent, ItemGroup, ItemMedia } from "~/components/ui/item";
 import { Skeleton } from "~/components/ui/skeleton";
-import { TodoItemCard } from "~/features/todo-items/todo-items.components";
-import { todoItemQueries } from "~/features/todo-items/todo-items.queries";
+import { todoItemQueries } from "~/features/todo-items/api/queries";
+import { TodoItemCard } from "~/features/todo-items/components/todo-item-card";
 
 const RouteComponent = () => {
   const todoItemsQuery = useSuspenseQuery(

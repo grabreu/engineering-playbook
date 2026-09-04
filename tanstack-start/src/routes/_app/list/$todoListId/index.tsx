@@ -11,12 +11,10 @@ import {
 } from "~/components/ui/empty";
 import { Item, ItemContent, ItemGroup, ItemMedia } from "~/components/ui/item";
 import { Skeleton } from "~/components/ui/skeleton";
-import {
-  TodoItemCard,
-  TodoItemCreateDialog,
-} from "~/features/todo-items/todo-items.components";
-import { todoItemQueries } from "~/features/todo-items/todo-items.queries";
-import { todoListQueries } from "~/features/todo-lists/todo-lists.queries";
+import { todoItemQueries } from "~/features/todo-items/api/queries";
+import { TodoItemCard } from "~/features/todo-items/components/todo-item-card";
+import { TodoItemCreateDialog } from "~/features/todo-items/components/todo-item-create-dialog";
+import { todoListQueries } from "~/features/todo-lists/api/queries";
 
 const RouteComponent = () => {
   const params = Route.useParams();

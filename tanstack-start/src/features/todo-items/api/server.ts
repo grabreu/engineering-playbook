@@ -1,11 +1,7 @@
 import { createServerFn } from "@tanstack/react-start";
 import z from "zod";
-import {
-  completeTodoItem,
-  createTodoItem,
-  getTodoItems,
-  starTodoItem,
-} from "./todo-items.server";
+import { api } from "~/lib/api";
+import type { TodoItem } from "../types/todo-item";
 
 export const starTodoItemFn = createServerFn({
   method: "POST",
@@ -16,8 +12,10 @@ export const starTodoItemFn = createServerFn({
       isStarred: z.boolean(),
     }),
   )
-  .handler(({ data }) => {
-    return starTodoItem(data);
+  .handler(async ({ data }) => {
+    await api.patch(`/todo-items/${data.todoItemId}/star`, {
+      json: { isStarred: data.isStarred },
+    });
   });
 
 export const completeTodoItemFn = createServerFn({
@@ -28,8 +26,8 @@ export const completeTodoItemFn = createServerFn({
       todoItemId: z.uuid(),
     }),
   )
-  .handler(({ data }) => {
-    return completeTodoItem(data);
+  .handler(async ({ data }) => {
+    await api.patch(`/todo-items/${data.todoItemId}/complete`);
   });
 
 export const getTodoItemsFn = createServerFn({
@@ -42,8 +40,11 @@ export const getTodoItemsFn = createServerFn({
       isStarred: z.boolean().optional(),
     }),
   )
-  .handler(({ data }) => {
-    return getTodoItems(data);
+  .handler(async ({ data }) => {
+    const response = await api.get("/todo-items", {
+      searchParams: data,
+    });
+    return response.json<TodoItem[]>();
   });
 
 export const createTodoItemFn = createServerFn({
@@ -55,6 +56,9 @@ export const createTodoItemFn = createServerFn({
       title: z.string(),
     }),
   )
-  .handler(({ data }) => {
-    return createTodoItem(data);
+  .handler(async ({ data }) => {
+    const response = await api.post("/todo-items", {
+      json: data,
+    });
+    return response.json<TodoItem>();
   });

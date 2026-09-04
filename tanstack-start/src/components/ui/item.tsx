@@ -5,10 +5,9 @@ import type { ComponentProps } from "react";
 import { Separator } from "~/components/ui/separator";
 import { cn } from "~/utils/cn";
 
-export const ItemGroup = ({ className, ...props }: ComponentProps<"div">) => {
+export const ItemGroup = ({ className, ...props }: ComponentProps<"ul">) => {
   return (
-    <div
-      role="list"
+    <ul
       data-slot="item-group"
       className={cn(
         "group/item-group flex w-full flex-col gap-4 has-data-[size=sm]:gap-2.5 has-data-[size=xs]:gap-2",
@@ -34,7 +33,7 @@ export const ItemSeparator = ({
 };
 
 const itemVariants = cva(
-  "group/item flex w-full flex-wrap items-center rounded-lg border text-sm transition-colors duration-100 outline-none focus-visible:border-ring focus-visible:ring-[3px] focus-visible:ring-ring/50 [a]:transition-colors [a]:hover:bg-muted",
+  "group/item flex w-full list-none flex-wrap items-center rounded-lg border text-sm transition-colors duration-100 outline-none focus-visible:border-ring focus-visible:ring-[3px] focus-visible:ring-ring/50 [a]:transition-colors [a]:hover:bg-muted",
   {
     variants: {
       variant: {
@@ -61,10 +60,10 @@ export const Item = ({
   size = "default",
   render,
   ...props
-}: useRender.ComponentProps<"div"> & VariantProps<typeof itemVariants>) => {
+}: useRender.ComponentProps<"li"> & VariantProps<typeof itemVariants>) => {
   return useRender({
-    defaultTagName: "div",
-    props: mergeProps<"div">(
+    defaultTagName: "li",
+    props: mergeProps<"li">(
       {
         className: cn(itemVariants({ variant, size, className })),
       },

@@ -1,5 +1,5 @@
 import { queryOptions } from "@tanstack/react-query";
-import { getTodoItemsFn } from "./todo-items.functions";
+import { getTodoItemsFn } from "./server";
 
 export const todoItemQueries = {
   all: () => ["todo-items"] as const,

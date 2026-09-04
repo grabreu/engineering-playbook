@@ -4,6 +4,7 @@ import { cn } from "~/utils/cn";
 
 export const Label = ({ className, ...props }: ComponentProps<"label">) => {
   return (
+    // biome-ignore lint/a11y/noLabelWithoutControl: generic wrapper — every call site supplies htmlFor/id itself
     <label
       data-slot="label"
       className={cn(

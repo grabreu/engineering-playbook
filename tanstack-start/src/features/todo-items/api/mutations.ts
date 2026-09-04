@@ -1,9 +1,5 @@
 import { mutationOptions } from "@tanstack/react-query";
-import {
-  completeTodoItemFn,
-  createTodoItemFn,
-  starTodoItemFn,
-} from "./todo-items.functions";
+import { completeTodoItemFn, createTodoItemFn, starTodoItemFn } from "./server";
 
 export const todoItemMutations = {
   star: () =>

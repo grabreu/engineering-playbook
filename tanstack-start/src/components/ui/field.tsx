@@ -76,6 +76,7 @@ export const Field = ({
   ...props
 }: ComponentProps<"div"> & VariantProps<typeof fieldVariants>) => {
   return (
+    // biome-ignore lint/a11y/useSemanticElements: single-control wrapper, not a <fieldset> grouping — FieldSet/FieldLegend cover that case
     <div
       role="group"
       data-slot="field"

@@ -1,16 +1,6 @@
-import { useForm } from "@tanstack/react-form";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
-import { PlusIcon, SquareIcon, StarIcon } from "lucide-react";
-import z from "zod";
+import { SquareIcon, StarIcon } from "lucide-react";
 import { Button } from "~/components/ui/button";
-import {
-  Field,
-  FieldError,
-  FieldGroup,
-  FieldLabel,
-} from "~/components/ui/field";
-import { FormModal } from "~/components/ui/form-modal";
-import { Input } from "~/components/ui/input";
 import {
   Item,
   ItemActions,
@@ -20,9 +10,9 @@ import {
 } from "~/components/ui/item";
 import { toast } from "~/components/ui/toast";
 import { cn } from "~/utils/cn";
-import { todoItemMutations } from "./todo-items.mutations";
-import { todoItemQueries } from "./todo-items.queries";
-import type { TodoItem } from "./todo-items.types";
+import { todoItemMutations } from "../api/mutations";
+import { todoItemQueries } from "../api/queries";
+import type { TodoItem } from "../types/todo-item";
 
 type TodoItemCardProps = {
   item: TodoItem;
@@ -138,90 +128,5 @@ const TodoItemCompleteButton = ({
     >
       <SquareIcon />
     </Button>
-  );
-};
-
-type TodoItemCreateDialogProps = {
-  todoListId: string;
-};
-
-export const TodoItemCreateDialog = ({
-  todoListId,
-}: TodoItemCreateDialogProps) => {
-  const queryClient = useQueryClient();
-
-  const mutation = useMutation({
-    ...todoItemMutations.create(),
-    onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: todoItemQueries.all() });
-    },
-  });
-
-  const form = useForm({
-    defaultValues: {
-      title: "",
-    },
-    validators: {
-      onSubmit: z.object({
-        title: z.string(),
-      }),
-    },
-    onSubmit: ({ value }) => {
-      mutation.mutate({
-        todoListId: todoListId,
-        title: value.title,
-      });
-    },
-  });
-
-  return (
-    <FormModal
-      title="Add a task"
-      trigger={
-        <Button variant="outline">
-          <PlusIcon />
-          Add a task
-        </Button>
-      }
-      isDone={mutation.isSuccess}
-      onClose={() => form.reset()}
-      submit={
-        <Button type="submit" form={form.formId} disabled={mutation.isPending}>
-          Done
-        </Button>
-      }
-    >
-      <form
-        id={form.formId}
-        onSubmit={(e) => {
-          e.preventDefault();
-          e.stopPropagation();
-          form.handleSubmit();
-        }}
-      >
-        <FieldGroup className="gap-4 text-sm">
-          <form.Field name="title">
-            {(field) => {
-              const isInvalid =
-                field.state.meta.isTouched && !field.state.meta.isValid;
-              return (
-                <Field data-invalid={isInvalid}>
-                  <FieldLabel htmlFor={field.name}>Name</FieldLabel>
-                  <Input
-                    id={field.name}
-                    name={field.name}
-                    value={field.state.value}
-                    onBlur={field.handleBlur}
-                    onChange={(e) => field.handleChange(e.target.value)}
-                    aria-invalid={isInvalid}
-                  />
-                  {isInvalid && <FieldError errors={field.state.meta.errors} />}
-                </Field>
-              );
-            }}
-          </form.Field>
-        </FieldGroup>
-      </form>
-    </FormModal>
   );
 };

@@ -17,7 +17,7 @@ import {
   SidebarMenuSubButton,
   SidebarMenuSubItem,
 } from "~/components/ui/sidebar";
-import { todoListQueries } from "~/features/todo-lists/todo-lists.queries";
+import { todoListQueries } from "~/features/todo-lists/api/queries";
 
 export const NavTodoLists = () => {
   const query = useSuspenseQuery(todoListQueries.list());

@@ -14,8 +14,8 @@ import { FormModal } from "~/components/ui/form-modal";
 import { Input } from "~/components/ui/input";
 import { SidebarMenuButton } from "~/components/ui/sidebar";
 import { toast } from "~/components/ui/toast";
-import { todoListMutations } from "./todo-lists.mutations";
-import { todoListQueries } from "./todo-lists.queries";
+import { todoListMutations } from "../api/mutations";
+import { todoListQueries } from "../api/queries";
 
 export const TodoListCreateDialog = () => {
   const navigate = useNavigate();

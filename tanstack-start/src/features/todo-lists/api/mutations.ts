@@ -1,5 +1,5 @@
 import { mutationOptions } from "@tanstack/react-query";
-import { createTodoListFn } from "./todo-lists.functions";
+import { createTodoListFn } from "./server";
 
 export const todoListMutations = {
   create: () =>
