@@ -5,16 +5,3 @@ export type ProblemDetails = {
   detail?: string;
   traceId?: string;
 };
-
-export type TodoList = {
-  id: string;
-  name: string;
-};
-
-export type TodoItem = {
-  id: string;
-  todoListId: string;
-  title: string;
-  isStarred: boolean;
-  isCompleted: boolean;
-};

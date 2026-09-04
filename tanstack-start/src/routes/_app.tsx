@@ -2,7 +2,7 @@ import { createFileRoute, Outlet } from "@tanstack/react-router";
 import { AppSidebar } from "~/components/layout/app-sidebar";
 import { SiteHeader } from "~/components/layout/site-header";
 import { SidebarInset, SidebarProvider } from "~/components/ui/sidebar";
-import { getTodoListsQueryOptions } from "~/features/todo-lists/api/get-todo-lists";
+import { todoListQueries } from "~/features/todo-lists/todo-lists.queries";
 
 const RouteComponent = () => {
   return (
@@ -27,7 +27,7 @@ const RouteComponent = () => {
 export const Route = createFileRoute("/_app")({
   loader: async ({ context }) => {
     await context.queryClient.query({
-      ...getTodoListsQueryOptions(),
+      ...todoListQueries.list(),
       staleTime: "static",
     });
   },

@@ -1,6 +1,6 @@
 import { TanStackDevtools } from "@tanstack/react-devtools";
 import type { QueryClient } from "@tanstack/react-query";
-import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
+import { ReactQueryDevtoolsPanel } from "@tanstack/react-query-devtools";
 import {
   createRootRouteWithContext,
   HeadContent,
@@ -9,6 +9,7 @@ import {
 import { TanStackRouterDevtoolsPanel } from "@tanstack/react-router-devtools";
 import appCss from "~/app.css?url";
 import { ThemeProvider } from "~/components/theme/theme-provider";
+import { Toaster } from "~/components/ui/toast";
 import { TooltipProvider } from "~/components/ui/tooltip";
 import { seo } from "~/utils/seo";
 
@@ -64,6 +65,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
           <body>
             <ThemeProvider defaultTheme="system" storageKey="theme">
               <TooltipProvider>{children}</TooltipProvider>
+              <Toaster />
             </ThemeProvider>
             <TanStackDevtools
               plugins={[
@@ -73,7 +75,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
                 },
                 {
                   name: "Tanstack Query",
-                  render: <ReactQueryDevtools />,
+                  render: <ReactQueryDevtoolsPanel />,
                 },
               ]}
             />

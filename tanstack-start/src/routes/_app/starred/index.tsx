@@ -1,43 +1,26 @@
+import { useSuspenseQuery } from "@tanstack/react-query";
 import { createFileRoute } from "@tanstack/react-router";
+import { CircleStarIcon } from "lucide-react";
+import { Card, CardContent, CardHeader, CardTitle } from "~/components/ui/card";
 import {
-  EllipsisVerticalIcon,
-  PlusIcon,
-  SquareIcon,
-  StarIcon,
-} from "lucide-react";
-import { Button } from "~/components/ui/button";
-import {
-  Card,
-  CardAction,
-  CardContent,
-  CardHeader,
-  CardTitle,
-} from "~/components/ui/card";
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuGroup,
-  DropdownMenuItem,
-  DropdownMenuTrigger,
-} from "~/components/ui/dropdown-menu";
-import {
-  Item,
-  ItemActions,
-  ItemContent,
-  ItemGroup,
-  ItemMedia,
-  ItemTitle,
-} from "~/components/ui/item";
+  Empty,
+  EmptyDescription,
+  EmptyHeader,
+  EmptyMedia,
+  EmptyTitle,
+} from "~/components/ui/empty";
+import { Item, ItemContent, ItemGroup, ItemMedia } from "~/components/ui/item";
 import { Skeleton } from "~/components/ui/skeleton";
-import {
-  getTodoItemsQueryOptions,
-  useTodoItems,
-} from "~/features/todo-items/api/get-todo-items";
+import { TodoItemCard } from "~/features/todo-items/todo-items.components";
+import { todoItemQueries } from "~/features/todo-items/todo-items.queries";
 
 const RouteComponent = () => {
-  const todoItemsQuery = useTodoItems({
-    input: { isStarred: true, isCompleted: false },
-  });
+  const todoItemsQuery = useSuspenseQuery(
+    todoItemQueries.list({
+      isCompleted: false,
+      isStarred: true,
+    }),
+  );
 
   return (
     <Card className="max-w-2xl">
@@ -45,25 +28,27 @@ const RouteComponent = () => {
         <CardTitle>Starred tasks</CardTitle>
       </CardHeader>
       <CardContent>
-        <ItemGroup>
-          {todoItemsQuery.data.map((item) => (
-            <Item key={item.id} variant="outline">
-              <ItemMedia variant="icon">
-                <Button variant="ghost" size="icon-sm">
-                  <SquareIcon />
-                </Button>
-              </ItemMedia>
-              <ItemContent>
-                <ItemTitle>{item.title}</ItemTitle>
-              </ItemContent>
-              <ItemActions>
-                <Button variant="ghost" size="icon-sm">
-                  <StarIcon />
-                </Button>
-              </ItemActions>
-            </Item>
-          ))}
-        </ItemGroup>
+        {todoItemsQuery.data.length === 0 && (
+          <Empty>
+            <EmptyHeader>
+              <EmptyMedia variant="icon">
+                <CircleStarIcon />
+              </EmptyMedia>
+              <EmptyTitle>No starred tasks</EmptyTitle>
+              <EmptyDescription>
+                Mark important tasks with a star so you can easily find them
+                here
+              </EmptyDescription>
+            </EmptyHeader>
+          </Empty>
+        )}
+        {todoItemsQuery.data.length > 0 && (
+          <ItemGroup>
+            {todoItemsQuery.data.map((item) => (
+              <TodoItemCard key={item.id} item={item} showUndoOnUnstar />
+            ))}
+          </ItemGroup>
+        )}
       </CardContent>
     </Card>
   );
@@ -73,15 +58,12 @@ const RoutePendingComponent = () => {
   return (
     <Card className="max-w-2xl">
       <CardHeader>
-        <Skeleton className="h-6 w-32" />
+        <CardTitle>Starred tasks</CardTitle>
       </CardHeader>
       <CardContent>
-        <Skeleton className="h-9 w-40" />
-      </CardContent>
-      <CardContent>
         <ItemGroup>
-          {Array.from({ length: 3 }, (_, index) => (
-            <Item key={index} variant="outline">
+          {Array.from({ length: 3 }, (_, i) => `skeleton-${i}`).map((key) => (
+            <Item key={key} variant="outline">
               <ItemMedia variant="icon">
                 <Skeleton className="size-6 rounded-sm" />
               </ItemMedia>
@@ -99,7 +81,10 @@ const RoutePendingComponent = () => {
 export const Route = createFileRoute("/_app/starred/")({
   loader: ({ context }) => {
     return context.queryClient.query(
-      getTodoItemsQueryOptions({ isStarred: true, isCompleted: false }),
+      todoItemQueries.list({
+        isCompleted: false,
+        isStarred: true,
+      }),
     );
   },
   pendingComponent: RoutePendingComponent,

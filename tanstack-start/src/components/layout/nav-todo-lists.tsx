@@ -1,3 +1,4 @@
+import { useSuspenseQuery } from "@tanstack/react-query";
 import { Link } from "@tanstack/react-router";
 import { ChevronDownIcon } from "lucide-react";
 import {
@@ -16,10 +17,10 @@ import {
   SidebarMenuSubButton,
   SidebarMenuSubItem,
 } from "~/components/ui/sidebar";
-import { useTodoLists } from "~/features/todo-lists/api/get-todo-lists";
+import { todoListQueries } from "~/features/todo-lists/todo-lists.queries";
 
 export const NavTodoLists = () => {
-  const todoListsQuery = useTodoLists();
+  const query = useSuspenseQuery(todoListQueries.list());
 
   return (
     <SidebarGroup>
@@ -36,7 +37,7 @@ export const NavTodoLists = () => {
             </CollapsibleTrigger>
             <CollapsibleContent>
               <SidebarMenuSub>
-                {todoListsQuery.data?.map((todoList) => (
+                {query.data.map((todoList) => (
                   <SidebarMenuSubItem key={todoList.id}>
                     <SidebarMenuSubButton
                       render={
