@@ -48,7 +48,7 @@ const RouteComponent = () => {
               </EmptyMedia>
               <EmptyTitle>No tasks yet</EmptyTitle>
               <EmptyDescription>
-                Add your to-dos and keep track of them across Google Workspace
+                Add your to-dos and keep track of them in this list
               </EmptyDescription>
             </EmptyHeader>
           </Empty>
