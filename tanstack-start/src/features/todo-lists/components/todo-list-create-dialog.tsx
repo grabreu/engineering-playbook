@@ -48,7 +48,7 @@ export const TodoListCreateDialog = () => {
     },
     validators: {
       onSubmit: z.object({
-        name: z.string(),
+        name: z.string().min(1).max(200),
       }),
     },
     onSubmit: ({ value }) => {

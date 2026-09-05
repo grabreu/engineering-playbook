@@ -1,4 +1,5 @@
 using CleanArchitecture.Api.ExceptionHandling;
+using CleanArchitecture.Infrastructure.Data;
 
 namespace CleanArchitecture.Api;
 
@@ -11,6 +12,10 @@ public static class DependencyInjection
         services.AddExceptionHandler<DomainExceptionHandler>();
         services.AddExceptionHandler<GlobalExceptionHandler>();
         services.AddProblemDetails();
+
+        services.AddHealthChecks()
+            .AddCheck("self", () => HealthCheckResult.Healthy(), ["live"])
+            .AddDbContextCheck<ApplicationDbContext>();
 
         services.AddCors(options =>
         {

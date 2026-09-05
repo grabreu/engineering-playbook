@@ -36,7 +36,7 @@ export const TodoItemCreateDialog = ({
     },
     validators: {
       onSubmit: z.object({
-        title: z.string(),
+        title: z.string().min(1).max(200),
       }),
     },
     onSubmit: ({ value }) => {
@@ -79,7 +79,7 @@ export const TodoItemCreateDialog = ({
                 field.state.meta.isTouched && !field.state.meta.isValid;
               return (
                 <Field data-invalid={isInvalid}>
-                  <FieldLabel htmlFor={field.name}>Name</FieldLabel>
+                  <FieldLabel htmlFor={field.name}>Title</FieldLabel>
                   <Input
                     id={field.name}
                     name={field.name}

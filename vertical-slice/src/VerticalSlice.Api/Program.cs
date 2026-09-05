@@ -24,6 +24,10 @@ builder.Services.AddExceptionHandler<DomainExceptionHandler>();
 builder.Services.AddExceptionHandler<GlobalExceptionHandler>();
 builder.Services.AddProblemDetails();
 
+builder.Services.AddHealthChecks()
+    .AddCheck("self", () => HealthCheckResult.Healthy(), ["live"])
+    .AddDbContextCheck<ApplicationDbContext>();
+
 builder.Services.AddCors(options =>
 {
     options.AddDefaultPolicy(policy =>
@@ -65,6 +69,12 @@ if (app.Environment.IsDevelopment())
     app.MapScalarApiReference();
     app.Map("/", () => Results.Redirect("/scalar"));
 }
+
+app.MapHealthChecks("/health");
+app.MapHealthChecks("/alive", new HealthCheckOptions
+{
+    Predicate = r => r.Tags.Contains("live")
+});
 
 app.MapCompleteTodoItemEndpoint();
 app.MapCreateTodoItemEndpoint();

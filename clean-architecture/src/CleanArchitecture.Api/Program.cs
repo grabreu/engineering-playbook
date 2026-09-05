@@ -33,6 +33,12 @@ if (app.Environment.IsDevelopment())
     app.Map("/", () => Results.Redirect("/scalar"));
 }
 
+app.MapHealthChecks("/health");
+app.MapHealthChecks("/alive", new HealthCheckOptions
+{
+    Predicate = r => r.Tags.Contains("live")
+});
+
 app.MapCompleteTodoItemEndpoint();
 app.MapCreateTodoItemEndpoint();
 app.MapGetTodoItemsEndpoint();

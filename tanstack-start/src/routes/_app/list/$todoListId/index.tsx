@@ -1,6 +1,6 @@
 import { useSuspenseQuery } from "@tanstack/react-query";
-import { createFileRoute } from "@tanstack/react-router";
-import { CheckCheckIcon } from "lucide-react";
+import { createFileRoute, notFound } from "@tanstack/react-router";
+import { CheckCheckIcon, ListXIcon } from "lucide-react";
 import { Card, CardContent, CardHeader, CardTitle } from "~/components/ui/card";
 import {
   Empty,
@@ -92,8 +92,36 @@ const RoutePendingComponent = () => {
   );
 };
 
+const RouteNotFoundComponent = () => {
+  return (
+    <Card className="max-w-2xl">
+      <CardContent>
+        <Empty>
+          <EmptyHeader>
+            <EmptyMedia variant="icon">
+              <ListXIcon />
+            </EmptyMedia>
+            <EmptyTitle>List not found</EmptyTitle>
+            <EmptyDescription>
+              We couldn't find the list you're looking for. Select one of your
+              lists from the sidebar or create a new list.
+            </EmptyDescription>
+          </EmptyHeader>
+        </Empty>
+      </CardContent>
+    </Card>
+  );
+};
+
 export const Route = createFileRoute("/_app/list/$todoListId/")({
-  loader: ({ context, params }) => {
+  loader: async ({ context, params }) => {
+    const todoLists = await context.queryClient.query(todoListQueries.list());
+    const todoList = todoLists.find((list) => list.id === params.todoListId);
+
+    if (!todoList) {
+      throw notFound();
+    }
+
     return context.queryClient.query(
       todoItemQueries.list({
         todoListId: params.todoListId,
@@ -102,5 +130,6 @@ export const Route = createFileRoute("/_app/list/$todoListId/")({
     );
   },
   pendingComponent: RoutePendingComponent,
+  notFoundComponent: RouteNotFoundComponent,
   component: RouteComponent,
 });
