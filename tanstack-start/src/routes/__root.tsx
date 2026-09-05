@@ -29,7 +29,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
           content: "#ffffff",
         },
         ...seo({
-          title: "Todo App | TanStack Start",
+          title: "Tasks",
           description: "A sample todo application built with TanStack Start.",
         }),
       ],

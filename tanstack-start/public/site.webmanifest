@@ -1,6 +1,6 @@
 {
-  "name": "TanStack Start",
-  "short_name": "TanStack",
+  "name": "Tasks",
+  "short_name": "Tasks",
   "icons": [
     {
       "src": "/android-chrome-192x192.png",

@@ -11,5 +11,8 @@ public class TodoListConfiguration : IEntityTypeConfiguration<TodoList>
         builder.Property(x => x.Name)
             .HasMaxLength(200)
             .IsRequired();
+
+        builder.HasIndex(x => x.Name)
+            .IsUnique();
     }
 }

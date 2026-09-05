@@ -15,6 +15,7 @@ import { todoItemQueries } from "~/features/todo-items/api/queries";
 import { TodoItemCard } from "~/features/todo-items/components/todo-item-card";
 import { TodoItemCreateDialog } from "~/features/todo-items/components/todo-item-create-dialog";
 import { todoListQueries } from "~/features/todo-lists/api/queries";
+import { seo } from "~/utils/seo";
 
 const RouteComponent = () => {
   const params = Route.useParams();
@@ -122,13 +123,18 @@ export const Route = createFileRoute("/_app/list/$todoListId/")({
       throw notFound();
     }
 
-    return context.queryClient.query(
+    await context.queryClient.query(
       todoItemQueries.list({
         todoListId: params.todoListId,
         isCompleted: false,
       }),
     );
+
+    return { todoList };
   },
+  head: ({ loaderData }) => ({
+    meta: seo({ title: `${loaderData?.todoList.name ?? "List"} · Tasks` }),
+  }),
   pendingComponent: RoutePendingComponent,
   notFoundComponent: RouteNotFoundComponent,
   component: RouteComponent,

@@ -13,6 +13,7 @@ import { Item, ItemContent, ItemGroup, ItemMedia } from "~/components/ui/item";
 import { Skeleton } from "~/components/ui/skeleton";
 import { todoItemQueries } from "~/features/todo-items/api/queries";
 import { TodoItemCard } from "~/features/todo-items/components/todo-item-card";
+import { seo } from "~/utils/seo";
 
 const RouteComponent = () => {
   const todoItemsQuery = useSuspenseQuery(
@@ -79,6 +80,9 @@ const RoutePendingComponent = () => {
 };
 
 export const Route = createFileRoute("/_app/starred/")({
+  head: () => ({
+    meta: seo({ title: "Starred · Tasks" }),
+  }),
   loader: ({ context }) => {
     return context.queryClient.query(
       todoItemQueries.list({
