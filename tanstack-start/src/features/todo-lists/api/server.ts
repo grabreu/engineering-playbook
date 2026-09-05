@@ -6,8 +6,8 @@ import type { TodoList } from "../types/todo-list";
 export const getTodoListsFn = createServerFn({
   method: "GET",
 }).handler(async () => {
-  const response = await api.get("/todo-lists");
-  return response.json<TodoList[]>();
+  const response = await api.get<TodoList[]>("/todo-lists");
+  return response.data;
 });
 
 export const createTodoListFn = createServerFn({
@@ -19,8 +19,6 @@ export const createTodoListFn = createServerFn({
     }),
   )
   .handler(async ({ data }) => {
-    const response = await api.post("/todo-lists", {
-      json: data,
-    });
-    return response.json<TodoList>();
+    const response = await api.post<TodoList>("/todo-lists", data);
+    return response.data;
   });

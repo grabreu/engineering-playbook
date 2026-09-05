@@ -14,7 +14,7 @@ export const starTodoItemFn = createServerFn({
   )
   .handler(async ({ data }) => {
     await api.patch(`/todo-items/${data.todoItemId}/star`, {
-      json: { isStarred: data.isStarred },
+      isStarred: data.isStarred,
     });
   });
 
@@ -41,10 +41,10 @@ export const getTodoItemsFn = createServerFn({
     }),
   )
   .handler(async ({ data }) => {
-    const response = await api.get("/todo-items", {
-      searchParams: data,
+    const response = await api.get<TodoItem[]>("/todo-items", {
+      params: data,
     });
-    return response.json<TodoItem[]>();
+    return response.data;
   });
 
 export const createTodoItemFn = createServerFn({
@@ -57,8 +57,6 @@ export const createTodoItemFn = createServerFn({
     }),
   )
   .handler(async ({ data }) => {
-    const response = await api.post("/todo-items", {
-      json: data,
-    });
-    return response.json<TodoItem>();
+    const response = await api.post<TodoItem>("/todo-items", data);
+    return response.data;
   });

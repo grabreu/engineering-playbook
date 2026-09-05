@@ -24,6 +24,7 @@ public class GetTodoItemsHandler(ApplicationDbContext dbContext) : IQueryHandler
         }
 
         return await queryable
+            .OrderBy(ti => ti.Id)
             .Select(ti => new TodoItemDto(ti.Id, ti.TodoListId, ti.Title, ti.IsCompleted, ti.IsStarred))
             .ToListAsync(cancellationToken);
     }
