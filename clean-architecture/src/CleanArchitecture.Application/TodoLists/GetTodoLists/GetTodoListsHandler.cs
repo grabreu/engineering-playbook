@@ -9,7 +9,7 @@ public class GetTodoListsHandler(IApplicationDbContext dbContext) : IQueryHandle
         var queryable = dbContext.TodoLists.AsNoTracking();
 
         return await queryable
-            .Select(ti => new TodoListDto(ti.Id, ti.Name))
+            .Select(tl => new TodoListDto(tl.Id, tl.Name))
             .ToListAsync(cancellationToken);
     }
 }

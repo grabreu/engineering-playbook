@@ -36,6 +36,7 @@ if (app.Environment.IsDevelopment())
 app.MapCompleteTodoItemEndpoint();
 app.MapCreateTodoItemEndpoint();
 app.MapGetTodoItemsEndpoint();
+app.MapSetTodoItemStarredEndpoint();
 app.MapCreateTodoListEndpoint();
 app.MapGetTodoListsEndpoint();
 
