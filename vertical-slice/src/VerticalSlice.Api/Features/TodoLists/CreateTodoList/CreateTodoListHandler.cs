@@ -1,3 +1,4 @@
+using Microsoft.EntityFrameworkCore;
 using VerticalSlice.Api.Data;
 using VerticalSlice.Api.Domain.TodoLists;
 
@@ -7,6 +8,11 @@ public class CreateTodoListHandler(ApplicationDbContext dbContext) : ICommandHan
 {
     public async ValueTask<Result<TodoListDto>> Handle(CreateTodoListCommand command, CancellationToken cancellationToken)
     {
+        if (await dbContext.TodoLists.AnyAsync(tl => tl.Name == command.Name, cancellationToken))
+        {
+            return Error.Conflict("TodoLists.NameAlreadyExists", $"Todo list '{command.Name}' already exists.");
+        }
+
         var todoList = new TodoList(command.Name);
 
         dbContext.TodoLists.Add(todoList);

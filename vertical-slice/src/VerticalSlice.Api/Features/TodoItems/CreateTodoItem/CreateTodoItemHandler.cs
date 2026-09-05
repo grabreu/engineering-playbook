@@ -7,7 +7,7 @@ public class CreateTodoItemHandler(ApplicationDbContext dbContext) : ICommandHan
 {
     public async ValueTask<Result<TodoItemDto>> Handle(CreateTodoItemCommand command, CancellationToken cancellationToken)
     {
-        if (!await dbContext.TodoLists.AnyAsync(t => t.Id == command.TodoListId, cancellationToken))
+        if (!await dbContext.TodoLists.AnyAsync(tl => tl.Id == command.TodoListId, cancellationToken))
         {
             return Error.NotFound("TodoLists.NotFound", $"Todo list '{command.TodoListId}' was not found.");
         }

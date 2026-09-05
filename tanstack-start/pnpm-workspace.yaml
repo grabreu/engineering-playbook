@@ -1,0 +1,2 @@
+minimumReleaseAgeExclude:
+  - "@grabreu/aduana@1.0.1"
