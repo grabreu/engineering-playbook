@@ -3,6 +3,7 @@
     { "name": "root", "path": "." },
     { "name": "clean-architecture", "path": "clean-architecture" },
     { "name": "vertical-slice", "path": "vertical-slice" },
-    { "name": "tanstack-start", "path": "tanstack-start" }
+    { "name": "tanstack-start", "path": "tanstack-start" },
+    { "name": "tanstack-router", "path": "tanstack-router" }
   ]
 }

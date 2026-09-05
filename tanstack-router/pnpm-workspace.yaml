@@ -1,3 +1,4 @@
 allowBuilds:
-  esbuild: true
-  lightningcss: true
+  lightningcss: set this to true or false
+minimumReleaseAgeExclude:
+  - '@grabreu/aduana@1.0.1'
