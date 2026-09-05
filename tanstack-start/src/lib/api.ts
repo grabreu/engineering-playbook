@@ -1,8 +1,7 @@
 import aduana from "@grabreu/aduana";
-import { env } from "~/config/env";
 
 export const api = aduana.create({
-  baseURL: env.API_URL,
+  baseURL: process.env.API_URL,
 });
 
 api.interceptors.response.use(undefined, (error) => {
